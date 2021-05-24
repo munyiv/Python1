@@ -1,5 +1,5 @@
 class BankAccount:
-    car_name="Barclays"
+    bank_name="Barclays"
     def __init__ (self,name,year_of_start,balance):
             self.name=name
             self.year_of_start=year_of_start
