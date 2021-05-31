@@ -68,4 +68,3 @@ class BankAccount:
     
 # starndard libray you can say import math (contains a lot of math) 
 # from datetime import datetime deals with time
-#to get current time use datetime.now() to format time we use create a var now=datetime.now
