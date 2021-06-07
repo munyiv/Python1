@@ -60,11 +60,51 @@ class BankAccount:
 
 
     def borrow(self,ammount):
-        return f"Hello {self.name} I am glad to inform you that you can now acess kshs {ammount-self.loan} of loan from us"
+        if ammount < 0:
+            return f"Your amount is{self.balance} you can not borrow a loan"
+        elif  self.loan > 0:
+            return f"Hello {self.name} you have an outstanding loan.Please repay your outstanding loan "
+        elif ammount < 0.1* self.balance:
+            return f"Sorry {self.name} you are not qualified"
+        else:
+            loan=ammount * 1.05
+            self.loan=loan
+            self.balance += ammount
+            now=datetime.now()
+            transaction={
+                "ammount":{ammount},
+                "time":now,
+                "Narration":" You have succesfully borrowed"
+            }
+            self.statement.append(transaction)
 
-    def pay(self,ammount):
-        return f"Hello you are due to pay our loan of kshs{ammount}" 
+            return f"You have sucesfully borrowed"
 
-    
-# starndard libray you can say import math (contains a lot of math) 
-# from datetime import datetime deals with time
+      
+            
+
+    def repay(self,ammount):
+        if ammount <0:
+           return f"Hello {self.name} you should repay your entire loan"
+        elif ammount<= self.loan:
+            self.loan-=ammount
+            return f"You have repaid the loan"
+        else:
+            diff=ammount-self.loan
+            self.loan=0
+            self.deposit(diff)
+            now=datetime.now()
+            transaction={
+                "ammount":{ammount},
+                "time":now,
+                "Narration":" You have succesfully repaid your loan"
+            }
+            self.statement.append(transaction)
+ 
+            return f"You have succesfuly repaid your loan" 
+      
+     
+
+      
+
+
